@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quit Vaping Counter</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <main class="card">
+            <h1>Vape-free for</h1>
+
+            <div class="tiles">
+                <div class="tile">
+                    <span class="num" id="days">0</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="tile">
+                    <span class="num" id="hours">0</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="tile">
+                    <span class="num" id="minutes">0</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="tile small">
+                    <span class="num" id="seconds">0</span>
+                    <span class="label">Sec</span>
+                </div>
+            </div>
+
+            <p class="since" id="since">Press start when you've had your last vape.</p>
+
+            <div class="actions">
+                <button id="startBtn" class="btn primary">Start counting</button>
+                <button id="resetBtn" class="btn danger" hidden>Reset (I vaped)</button>
+            </div>
+        </main>
+    </body>
+</html>
