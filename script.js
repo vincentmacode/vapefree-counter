@@ -8,6 +8,8 @@ const sinceEl = document.getElementById('since');
 const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 
+// Persist the start timestamp (not a running count) so the counter survives reloads.
+// localStorage can throw when storage is blocked; missing/corrupt values fail the > 0 check.
 function getStart() {
     try {
         const value = Number(localStorage.getItem(KEY));
@@ -48,6 +50,8 @@ function render() {
         return;
     }
 
+    // Derive from wall-clock time each tick rather than incrementing, so it never drifts.
+    // Clamp in case the system clock is moved behind the saved start.
     const diff = Math.max(0, Date.now() - startTime);
     daysEl.textContent = Math.floor(diff / 86400000);
     hoursEl.textContent = Math.floor(diff / 3600000) % 24;
@@ -60,6 +64,7 @@ function render() {
 
 startBtn.addEventListener('click', start);
 resetBtn.addEventListener('click', reset);
+// Background tabs throttle setInterval; refresh immediately when the tab becomes visible.
 document.addEventListener('visibilitychange', render);
 setInterval(render, 1000);
 render();
